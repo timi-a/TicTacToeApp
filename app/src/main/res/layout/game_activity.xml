@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".GameActivity">
+
+    <!-- Game Header Items -->
+
+    <!-- Square filled with current player's color -->
+    <View
+        android:id="@+id/playerSquare"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_red_light"
+        app:layout_constraintBottom_toBottomOf="@id/roundView"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/roundView"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <!-- Current player's name + rectangular box surrounding it -->
+    <TextView
+        android:id="@+id/roundView"
+        style="@style/BlockyText"
+        android:layout_width="290dp"
+        android:layout_height="68dp"
+        android:background="@drawable/rectangle_1"
+        android:paddingStart="25dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="75dp"
+        android:paddingBottom="15dp"
+        android:text="@string/turnString"
+        android:textSize="36sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064"/>
+
+    <!-- Informative Text  -->
+    <TextView
+        android:id="@+id/infoText"
+        style="@style/BlockyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/infoString"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"/>
+
+    <!-- Game Grid Items -->
+
+    <!-- Grid00-->
+    <View
+        android:id="@+id/grid00"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="206dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid00 Outline-->
+    <View
+        android:id="@+id/gridOutline00"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid00"
+        app:layout_constraintEnd_toEndOf="@id/grid00"
+        app:layout_constraintStart_toStartOf="@id/grid00"
+        app:layout_constraintTop_toTopOf="@id/grid00"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid00 Button-->
+    <Button
+        android:id="@+id/button00"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid00"
+        app:layout_constraintEnd_toEndOf="@id/grid00"
+        app:layout_constraintStart_toStartOf="@id/grid00"
+        app:layout_constraintTop_toTopOf="@id/grid00"/>
+
+    <!-- Grid01-->
+    <View
+        android:id="@+id/grid01"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="206dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid01 Outline-->
+    <View
+        android:id="@+id/gridOutline01"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid01"
+        app:layout_constraintEnd_toEndOf="@id/grid01"
+        app:layout_constraintStart_toStartOf="@id/grid01"
+        app:layout_constraintTop_toTopOf="@id/grid01"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid01 Button-->
+    <Button
+        android:id="@+id/button01"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid01"
+        app:layout_constraintEnd_toEndOf="@id/grid01"
+        app:layout_constraintStart_toStartOf="@id/grid01"
+        app:layout_constraintTop_toTopOf="@id/grid01"/>
+
+    <!-- Grid02-->
+    <View
+        android:id="@+id/grid02"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="206dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid02 Outline-->
+    <View
+        android:id="@+id/gridOutline02"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid02"
+        app:layout_constraintEnd_toEndOf="@id/grid02"
+        app:layout_constraintStart_toStartOf="@id/grid02"
+        app:layout_constraintTop_toTopOf="@id/grid02"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid02 Button-->
+    <Button
+        android:id="@+id/button02"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid02"
+        app:layout_constraintEnd_toEndOf="@id/grid02"
+        app:layout_constraintStart_toStartOf="@id/grid02"
+        app:layout_constraintTop_toTopOf="@id/grid02"/>
+
+    <!-- Grid10-->
+    <View
+        android:id="@+id/grid10"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="345dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid10 Outline-->
+    <View
+        android:id="@+id/gridOutline10"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid10"
+        app:layout_constraintEnd_toEndOf="@id/grid10"
+        app:layout_constraintStart_toStartOf="@id/grid10"
+        app:layout_constraintTop_toTopOf="@id/grid10"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid10 Button-->
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid10"
+        app:layout_constraintEnd_toEndOf="@id/grid10"
+        app:layout_constraintStart_toStartOf="@id/grid10"
+        app:layout_constraintTop_toTopOf="@id/grid10"/>
+
+    <!-- Grid11-->
+    <View
+        android:id="@+id/grid11"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="345dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid11 Outline-->
+    <View
+        android:id="@+id/gridOutline11"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid11"
+        app:layout_constraintEnd_toEndOf="@id/grid11"
+        app:layout_constraintStart_toStartOf="@id/grid11"
+        app:layout_constraintTop_toTopOf="@id/grid11"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid11 Button-->
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid11"
+        app:layout_constraintEnd_toEndOf="@id/grid11"
+        app:layout_constraintStart_toStartOf="@id/grid11"
+        app:layout_constraintTop_toTopOf="@id/grid11"/>
+
+    <!-- Grid12-->
+    <View
+        android:id="@+id/grid12"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="345dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid12 Outline-->
+    <View
+        android:id="@+id/gridOutline12"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid12"
+        app:layout_constraintEnd_toEndOf="@id/grid12"
+        app:layout_constraintStart_toStartOf="@id/grid12"
+        app:layout_constraintTop_toTopOf="@id/grid12"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid12 Button-->
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid12"
+        app:layout_constraintEnd_toEndOf="@id/grid12"
+        app:layout_constraintStart_toStartOf="@id/grid12"
+        app:layout_constraintTop_toTopOf="@id/grid12"/>
+
+    <!-- Grid20-->
+    <View
+        android:id="@+id/grid20"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="484dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid20 Outline-->
+    <View
+        android:id="@+id/gridOutline20"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid20"
+        app:layout_constraintEnd_toEndOf="@id/grid20"
+        app:layout_constraintStart_toStartOf="@id/grid20"
+        app:layout_constraintTop_toTopOf="@id/grid20"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid20 Button-->
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid20"
+        app:layout_constraintEnd_toEndOf="@id/grid20"
+        app:layout_constraintStart_toStartOf="@id/grid20"
+        app:layout_constraintTop_toTopOf="@id/grid20"/>
+
+    <!-- Grid21-->
+    <View
+        android:id="@+id/grid21"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="484dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid21 Outline-->
+    <View
+        android:id="@+id/gridOutline21"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid21"
+        app:layout_constraintEnd_toEndOf="@id/grid21"
+        app:layout_constraintStart_toStartOf="@id/grid21"
+        app:layout_constraintTop_toTopOf="@id/grid21"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid21 Button-->
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid21"
+        app:layout_constraintEnd_toEndOf="@id/grid21"
+        app:layout_constraintStart_toStartOf="@id/grid21"
+        app:layout_constraintTop_toTopOf="@id/grid21"/>
+
+    <!-- Grid22-->
+    <View
+        android:id="@+id/grid22"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="484dp"
+        android:background="@android:color/white"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid22 Outline-->
+    <View
+        android:id="@+id/gridOutline22"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:background="@drawable/rectangle_1"
+        app:layout_constraintBottom_toBottomOf="@id/grid22"
+        app:layout_constraintEnd_toEndOf="@id/grid22"
+        app:layout_constraintStart_toStartOf="@id/grid22"
+        app:layout_constraintTop_toTopOf="@id/grid22"
+        app:layout_constraintWidth_percent="0.285"/>
+
+    <!-- Grid22 Button-->
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="126dp"
+        android:layout_height="131dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/grid22"
+        app:layout_constraintEnd_toEndOf="@id/grid22"
+        app:layout_constraintStart_toStartOf="@id/grid22"
+        app:layout_constraintTop_toTopOf="@id/grid22"/>
+
+    <!-- Game Footer Items -->
+
+    <!-- PLAY AGAIN Box -->
+    <TextView
+        android:id="@+id/playAgainText"
+        style="@style/BlockyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_1"
+        android:paddingTop="32dp"
+        android:paddingBottom="27dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:text="@string/playAgainString"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825"/>
+
+    <!-- PLAY AGAIN Button-->
+    <Button
+        android:id="@+id/playAgainBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintVertical_bias="0.825"
+        app:layout_constraintBottom_toBottomOf="@id/playAgainText"
+        app:layout_constraintEnd_toEndOf="@id/playAgainText"
+        app:layout_constraintStart_toStartOf="@id/playAgainText"
+        app:layout_constraintTop_toTopOf="@id/playAgainText"/>
+
+    <!-- HOME Box -->
+    <TextView
+        android:id="@+id/homeText"
+        style="@style/BlockyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_1"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/homeString"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825"/>
+
+    <!-- HOME Button-->
+    <Button
+        android:id="@+id/homeBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintVertical_bias="0.825"
+        app:layout_constraintBottom_toBottomOf="@id/homeText"
+        app:layout_constraintEnd_toEndOf="@id/homeText"
+        app:layout_constraintStart_toStartOf="@id/homeText"
+        app:layout_constraintTop_toTopOf="@id/homeText"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

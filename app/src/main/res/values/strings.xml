@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="tChar">T</string>
+    <string name="oChar">O</string>
+    <string name="cChar">C</string>
+    <string name="playString">&#160;&#160;PLAY&#160;&#160;</string>
+    <string name="modeString">&#160;&#160;MODE&#160;&#160;</string>
+    <string name="turnString">Player&#160;</string>
+    <string name="infoString">Tap a square to place your mark</string>
+    <string name="playAgainString">PLAY AGAIN</string>
+    <string name="homeString">&#160;&#160;HOME&#160;&#160;</string>
+</resources>

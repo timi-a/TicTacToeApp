@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".HomeActivity">
+
+    <!-- Logo Grid Items -->
+
+    <!-- Grid00 Outline-->
+    <View
+        android:id="@+id/grid00"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.13"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Logo Text  -->
+    <TextView
+        style="@style/BlockyText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/tChar"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/grid00"
+        app:layout_constraintEnd_toEndOf="@id/grid00"
+        app:layout_constraintStart_toStartOf="@id/grid00"
+        app:layout_constraintTop_toTopOf="@id/grid00" />
+    
+    <!-- Grid01 Outline-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.13"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Grid02 Outline-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintVertical_bias="0.13"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Grid10 Outline-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Grid11 Outline-->
+    <View
+        android:id="@+id/grid11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Logo Text  -->
+    <TextView
+        style="@style/BlockyText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/oChar"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/grid11"
+        app:layout_constraintEnd_toEndOf="@id/grid11"
+        app:layout_constraintStart_toStartOf="@id/grid11"
+        app:layout_constraintTop_toTopOf="@id/grid11" />
+
+    <!-- Grid12 Outline-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Grid20 Outline-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.47"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Grid21 Outline-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.47"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Grid22 Outline-->
+    <View
+        android:id="@+id/grid22"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rectangle_2"
+        app:layout_constraintHeight_percent="0.125"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintVertical_bias="0.47"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Logo Text  -->
+    <TextView
+        style="@style/BlockyText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/cChar"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/grid22"
+        app:layout_constraintEnd_toEndOf="@id/grid22"
+        app:layout_constraintStart_toStartOf="@id/grid22"
+        app:layout_constraintTop_toTopOf="@id/grid22" />
+
+    <!-- Home Page Buttons -->
+
+    <!-- PLAY Box -->
+    <TextView
+        android:id="@+id/playText"
+        style="@style/BlockyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_1"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/playString"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65"/>
+
+    <!-- PLAY Button -->
+    <Button
+        android:id="@+id/playBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/playText"
+        app:layout_constraintEnd_toEndOf="@id/playText"
+        app:layout_constraintStart_toStartOf="@id/playText"
+        app:layout_constraintTop_toTopOf="@id/playText"/>
+
+    <!-- MODE Box -->
+    <TextView
+        android:id="@+id/modeText"
+        style="@style/BlockyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_1"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/modeString"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"/>
+
+    <!-- Mode Button -->
+    <Button
+        android:id="@+id/modeBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@id/modeText"
+        app:layout_constraintEnd_toEndOf="@id/modeText"
+        app:layout_constraintStart_toStartOf="@id/modeText"
+        app:layout_constraintTop_toTopOf="@id/modeText"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
