@@ -2,17 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".HomeActivity">
 
-    <!-- Game Grid Items -->
+    <!-- Logo Grid Items -->
 
     <!-- Grid00 Outline-->
     <View
         android:id="@+id/grid00"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.1"
@@ -22,25 +25,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Grid00 Text-->
+    <!-- Logo Text  -->
     <TextView
         style="@style/BlockyText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/tChar"
         android:textSize="50sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
         android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/grid00"
         app:layout_constraintEnd_toEndOf="@id/grid00"
         app:layout_constraintStart_toStartOf="@id/grid00"
         app:layout_constraintTop_toTopOf="@id/grid00" />
-
+    
     <!-- Grid01 Outline-->
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.5"
@@ -54,7 +58,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.9"
@@ -68,7 +72,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.1"
@@ -80,10 +84,10 @@
 
     <!-- Grid11 Outline-->
     <View
-        android:id="@id/grid11"
+        android:id="@+id/grid11"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.5"
@@ -93,15 +97,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Grid11 Text-->
+    <!-- Logo Text  -->
     <TextView
         style="@style/BlockyText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/oChar"
+        android:textColor="@color/darkGrey"
         android:textSize="50sp"
-        android:textStyle="bold"
         android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/grid11"
         app:layout_constraintEnd_toEndOf="@id/grid11"
         app:layout_constraintStart_toStartOf="@id/grid11"
@@ -111,7 +116,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.9"
@@ -125,7 +130,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.1"
@@ -139,7 +144,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.5"
@@ -151,10 +156,10 @@
 
     <!-- Grid22 Outline-->
     <View
-        android:id="@id/grid22"
+        android:id="@+id/grid22"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rectangle_2"
+        android:background="@drawable/logo_grid"
         app:layout_constraintHeight_percent="0.125"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHorizontal_bias="0.9"
@@ -164,15 +169,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Grid22 Text-->
+    <!-- Logo Text  -->
     <TextView
         style="@style/BlockyText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/cChar"
         android:textSize="50sp"
-        android:textStyle="bold"
+        android:textColor="@color/white"
         android:gravity="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/grid22"
         app:layout_constraintEnd_toEndOf="@id/grid22"
         app:layout_constraintStart_toStartOf="@id/grid22"
@@ -186,19 +192,20 @@
         style="@style/BlockyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_1"
+        android:background="@drawable/navigation_button"
         android:paddingTop="30dp"
         android:paddingBottom="20dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:text="@string/playString"
+        android:textColor="@color/textColour"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65"/>
+        app:layout_constraintVertical_bias="0.7"/>
 
     <!-- PLAY Button -->
     <Button
@@ -217,19 +224,20 @@
         style="@style/BlockyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_1"
+        android:background="@drawable/navigation_button"
         android:paddingTop="30dp"
         android:paddingBottom="20dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:text="@string/modeString"
+        android:textColor="@color/textColour"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"/>
+        app:layout_constraintVertical_bias="0.85"/>
 
     <!-- Mode Button -->
     <Button

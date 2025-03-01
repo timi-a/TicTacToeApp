@@ -2,10 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.TicTacToe" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Light Mode Colors -->
-        <item name="colorPrimary">#6200EE</item>
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">@color/white</item> <!--App's Background Colour -->
     </style>
-
     <style name="Theme.TicTacToe" parent="Base.Theme.TicTacToe" />
 </resources>

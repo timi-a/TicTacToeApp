@@ -4,30 +4,40 @@ This class is used to handle the app's home page. Users are allowed to switch to
  preferences.
 
 Author: Timi Aina
-ID: 1777752
 Date: Feburary 14, 2025
  */
 
 package com.example.tictactoe;
 
+// Android core functionality
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+// AndroidX support libraries for UI and compatibility
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import android.widget.Button;
-
 public class HomeActivity extends AppCompatActivity {
 
-    // Runs all the desirable activity functions when an activity is created
+    // Data Field ==========================================================================
+    private final EventListener buttonListener  = new EventListener(this);
+
+    // Methods =============================================================================
+
+    /**
+     * Initializes the activity and sets up the button listeners.
+     *
+     * @param savedInstanceState - A possible saved state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeService.applyTheme(this);
+        Theme.applyTheme(this);
         EdgeToEdge.enable(this);
         setContentView(R.layout.home_activity);
 
@@ -37,28 +47,29 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
-        initActivityBtns(); // Add button listeners
+        buttonListener.initHomeBtns();
     }//onCreate
 
-    //Adds buttons listeners to all the buttons in the HomeActivity
-    public void initActivityBtns(){
-        Button playBtn = findViewById(R.id.playBtn);
-        Button modeBtn = findViewById(R.id.modeBtn);
+    /**
+     * Moves the user from the home page (HomeActivity) to the game page (GameActivity).
+     */
+    protected static void moveToGame(Context context) {
+        Intent intent = new Intent(context, GameActivity.class);
+        context.startActivity(intent);
 
-        playBtn.setOnClickListener(v -> moveToGame());
-        modeBtn.setOnClickListener(v -> toggleTheme());
-    }//initButton
-
-    // Moves the user from the home page (HomeActivity) to the game page (GameActivity)
-    public void moveToGame(){
-        Intent intent = new Intent(HomeActivity.this, GameActivity.class);
-        startActivity(intent);
-        finish(); // Close current activity
+        if (context instanceof Activity) {
+            ((Activity) context).finish(); // Close current activity
+        }//if statement
     }//moveToGame
 
-    // Toggles the app's theme between light and dark mode
-    public void toggleTheme(){
-        ThemeService.toggleTheme(this);
-        recreate(); // Restart activity to apply changes
+    /**
+     * Toggles the app's theme between light and dark mode.
+     */
+    protected static void toggleTheme(Context context) {
+        Theme.toggleTheme(context);
+
+        if (context instanceof Activity) {
+            ((Activity) context).recreate(); // Restart activity to apply changes
+        }//if statement
     }//toggleTheme
 }//HomeActivity

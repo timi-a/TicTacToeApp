@@ -1,29 +1,35 @@
 /*
-This class is used to handle the app's game page. Users are allowed to play a classic tic-tac-toe
+ This class is used to handle the app's game page. Users are allowed to play a classic tic-tac-toe
  game with another player an unlimited amount of times and can even switch back to the home page to
  change some of the app settings.
 
-Author: Timi Aina
-ID: 1777752
-Date: Feburary 14, 2025
+ BEWARE: The fight between American and UK English variations of the word 'color' is rampant in this
+ class.
+
+ Author: Timi Aina
+ Date: Feburary 14, 2025
  */
 
 package com.example.tictactoe;
 
+// Android core functionality
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+// AndroidX support libraries for UI and compatibility
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// Utility classes
 import java.util.HashMap;
+import java.util.Objects;
 
-import android.os.Handler;
-import android.os.Looper;
+// UI components
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,38 +38,47 @@ import android.widget.TextView;
 public class GameActivity extends AppCompatActivity {
 
     // Data Field ==========================================================================
-    private final int[][] gridIds = {
+    private static final int[][] gridIds = {
             {R.id.grid00, R.id.grid01, R.id.grid02},
             {R.id.grid10, R.id.grid11, R.id.grid12},
             {R.id.grid20, R.id.grid21, R.id.grid22}
     };
-    private final int rows = gridIds.length;
-    private final int cols = gridIds[0].length;
-    private final Grid gameGrid = new Grid(rows, cols);
-    private final int[][] gridOutlineIds = {
+    protected static final int rows = gridIds.length;
+    protected static final int cols = gridIds[0].length;
+    private static final Grid gameGrid = new Grid(rows, cols);
+    protected static final int[][] gridOutlineIds = {
             {R.id.gridOutline00, R.id.gridOutline01, R.id.gridOutline02},
             {R.id.gridOutline10, R.id.gridOutline11, R.id.gridOutline12},
             {R.id.gridOutline20, R.id.gridOutline21, R.id.gridOutline22}
     };
 
-    private final int[][] buttonIds = {
+    protected static final int[][] buttonIds = {
             {R.id.button00, R.id.button01, R.id.button02},
             {R.id.button10, R.id.button11, R.id.button12},
             {R.id.button20, R.id.button21, R.id.button22}
     };
 
-    private HashMap<String, String> colourMap;
-    private final Turn playerTurn = new Turn(1);
+    private final EventListener buttonListener  = new EventListener(this);
 
-    private int[][] winningPattern = null;
+    private static final Turn playerTurn = new Turn(1);
+
+    private final Animation flashAnimator = new Animation(this);
+
+    private static boolean tieGame;
+
+    static HashMap<String, Integer> colourMap;
 
     // Methods =============================================================================
 
-    // Runs all the desirable activity functions when an activity is created
+    /**
+     * Initializes the activity and sets up the game's starting state.
+     *
+     * @param savedInstanceState - A possible saved state of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeService.applyTheme(this);
+        Theme.applyTheme(this);
         EdgeToEdge.enable(this);
         setContentView(R.layout.game_activity);
 
@@ -73,120 +88,164 @@ public class GameActivity extends AppCompatActivity {
             return insets;
         });
 
-        initColours(); // Add the color map
-        initActivityBtns(); // Add button listeners
-        headerText(playerTurn.getTurn()); // Update round info
+        colourMap = buttonListener.initColours(this); // Maps player's turn to a colour
+
+        buttonListener.initGameBtns();
+        roundInfo(this, playerTurn.getTurn());
     }//onCreate
 
-    // Adds the color map of all different player, theme, and cell colours
-    public void initColours() {
-        colourMap = new HashMap<>();
-        colourMap.put("Player1", "#FF0000"); // Red colour in HEX
-        colourMap.put("Player2", "#0000FF"); // Blue colour in HEX
-        colourMap.put("Empty", "#FFFFFF"); // White colour in HEX
-        colourMap.put("LightMode", "#000000"); // Black colour in HEX
-        colourMap.put("DarkMode", "#FFFFFF"); // Black colour in HEX
-    }//initColours
+    /**
+     * Moves the user from the game page (GameActivity) to the home page (HomeActivity).
+     */
+    protected void moveToHome(){
+        resetGame();
 
-    // Adds buttons listeners to all the buttons in the GameActivity
-    public void initActivityBtns(){
-        Button playAgainBtn = findViewById(R.id.playAgainBtn);
-        playAgainBtn.setOnClickListener(v-> resetGame());
-
-        Button homeBtn = findViewById(R.id.homeBtn);
-        homeBtn.setOnClickListener(v -> moveToHome());
-
-        initGridBtns(rows, cols); // Add grid button listeners
-    }//initActivityBtns
-
-    // Adds buttons listeners to all the buttons in the grid
-    public void initGridBtns(int rows, int cols) {
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                Button btn = findViewById(buttonIds[row][col]);
-                if (btn != null) {
-                    final int btnRow = row;
-                    final int btnCol = col;
-                    btn.setOnClickListener(v -> setCell(btnRow, btnCol, btn));
-                }//if statement
-            }//for-loop
-        }//for-loop
-    }//initGridBtns
-
-    // Moves the user from the game page (GameActivity) to the home page (HomeActivity)
-    public void moveToHome(){
         Intent intent = new Intent(GameActivity.this, HomeActivity.class);
         startActivity(intent);
         finish(); // Close current activity
     }//moveToHome
 
-    // Checks to see whether a player has won the game
-    public int[][] checkWin(int player){
-        return gameGrid.checkWin(player);
-    }//checkWin
+    /**
+     * Updates the text displaying the current player's turn or the winner.
+     *
+     * @param player - The current player's number
+     */
 
-    // Update the text for the player's turn or winner
-    public void headerText(int player){
+    private static void roundInfo(Activity activity, int player) {
+        final int ROUND_TEXT_SIZE = 36;
 
-        // Update the text for each player
-        TextView playerTurnView = findViewById(R.id.roundView);
-        playerTurnView.setTextSize(36);
+        TextView playerTurnView = activity.findViewById(R.id.roundView);
+        if (playerTurnView != null) {
 
-        // Set the text with the player's number (playerTurn.getTurn())
-        String playerText = getString(R.string.turnString);
-        String message = playerText + playerTurn.getTurn() + ":";
-        playerTurnView.setText(message);
+            // Update the text
+            playerTurnView.setTextSize(ROUND_TEXT_SIZE);
 
+            // Set the text with the player's number (playerTurn.getTurn())
+            String playerText = activity.getString(R.string.turnString);
+            String message = playerText + player + ":";
+            playerTurnView.setText(message);
+        }//if statement
+
+        // Change the square view to the player's colour
+        View playerSquare = activity.findViewById(R.id.playerSquare);
+        if (playerSquare != null) {
+
+            Integer playerColour = Objects.requireNonNullElse(colourMap.get("Player" +
+                    playerTurn.getTurn()), Color.WHITE);
+            playerSquare.setBackgroundColor(playerColour);
+        }//if statement
+    }//roundInfo
+
+    /**
+     * Displays a message in the header, indicating the game has ended in a tie.
+     */
+    private void tieInfo() {
+        final int TIE_TEXT_SIZE = 25;
+
+        // Hide the player square
         View playerSquare = findViewById(R.id.playerSquare);
-        playerSquare.setBackgroundColor(Color.parseColor(colourMap.get("Player" + player)));
-    }//headerText
+        playerSquare.setVisibility(View.INVISIBLE);
 
-    // Display's the winner in the text box displaying round info.
-    public void winnerText() {
-        // Update the text for the winner
+        // Hide the round text
         TextView roundView = findViewById(R.id.roundView);
-        roundView.setTextSize(22);
+        roundView.setVisibility(View.INVISIBLE);
 
-        // Set the text with the player's number (playerTurn.getTurn())
-        String playerText = getString(R.string.turnString);
-        String message = playerText + playerTurn.getTurn() + " WINS!";
-        roundView.setText(message);
-    }//winnerText
+        // Create the text message
+        TextView tieText = findViewById(R.id.tieText);
+        String message = "NO PLAYER WINS!";
 
-    // Triggers all post-win actions
-    public void winSequence(){
-        disableCells(); // Game state reset
-        winnerText(); // UI updates
-        winAnimation(); // Animations
+        // Display the tie message
+        tieText.setVisibility(View.VISIBLE);
+        tieText.setTextSize(TIE_TEXT_SIZE);
+        tieText.setText(message);
+    }//tieInfo
+
+
+    /**
+     * Implements all the tasks needed to do after a tie.
+     */
+    private void tieSequence(){
+        disableCells();
+        tieInfo();
+    }//tieSequence
+
+
+    /**
+     * Displays the winner in the header, indicating the game result.
+     */
+    private static void winnerInfo(Activity activity) {
+        final int WINNER_TEXT_SIZE = 22;
+
+        TextView roundView = activity.findViewById(R.id.roundView);
+        if (roundView != null) {
+            roundView.setTextSize(WINNER_TEXT_SIZE);
+
+            // Set the text with the player's number (playerTurn.getTurn())
+            String playerText = activity.getString(R.string.turnString);
+            String message = playerText + playerTurn.getTurn() + " WINS!";
+            roundView.setText(message);
+        }//if statement
+    }//winnerInfo
+
+    /**
+     * Implements all the tasks needed to do after a win.
+     */
+    private void winSequence(){
+        disableCells();
+        GameActivity.winnerInfo(this);
+        flashAnimator.winAnimSequence();
     }//winSequence
 
-    /*
-    Sets an individual cell to the colour of a player, and marks that cell with
-    the player's number internally.
+    /**
+     * Sets an individual cell to the colour of the current player and marks the cell internally
+     * as a number.
+     *
+     * @param row - The row index of the cell
+     * @param col - The column index of the cell
+     * @param btn - The button representing the cell
      */
-    public void setCell(int row, int col, Button btn){
+    protected void setCell(Activity activity, int row, int col, Button btn) {
         btn.setEnabled(false); // Disable button
         gameGrid.setGrid(row, col, playerTurn.getTurn()); // BACKEND: Mark cell with player's number
 
-        View selectCell = findViewById(gridIds[row][col]);
-        selectCell.setBackgroundColor(Color.parseColor(getPlayerColour()));
+        View selectCell = activity.findViewById(gridIds[row][col]);
+        selectCell.setBackgroundColor(getPlayerColour());
 
-        winningPattern = checkWin(playerTurn.getTurn());
-        if (winningPattern != null){ // Player has won the game
-            winSequence();
-        } else { // Player has not won the game
-            playerTurn.switchTurn(); // Switch turn
-            headerText(playerTurn.getTurn()); // Update round info
-        }//if-else
+        if (activity instanceof GameActivity) {
+            GameActivity gameActivity = (GameActivity) activity;
+
+            gameActivity.flashAnimator.winningPattern = gameGrid.checkWin(playerTurn.getTurn());
+            if (gameActivity.flashAnimator.winningPattern != null) { // Player has won the game
+                gameActivity.winSequence();
+            } else { // Player has not won the game
+
+                // Checks whether the game has ended in a tie
+                tieGame = gameGrid.checkGrid();
+                if (tieGame) {
+                    gameActivity.tieSequence();
+                } else {
+                    // Continue the game
+                    playerTurn.switchTurn(); // Switch turn
+                    roundInfo(this, playerTurn.getTurn()); // Update round info
+                }//if-else
+            }//if-else
+        }//if statement
     }//setCell
 
-    // Returns the current player's colour in HEX
-    public String getPlayerColour() {
-        return colourMap.get("Player" + playerTurn.getTurn());
+    /**
+     * Returns the current player's assigned colour in HEX.
+     *
+     * @return - The player's colour
+     */
+    private static int getPlayerColour() {
+        Integer color = colourMap.get("Player" + playerTurn.getTurn());
+        return Objects.requireNonNullElse(color, Color.WHITE);
     }//getPlayerColour
 
-    // Disables all of the grid cells after a player has won the game
-    public void disableCells(){
+    /**
+     * Disables all grid cells after a player has won the game.
+     */
+    private void disableCells(){
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 Button btn = findViewById(buttonIds[row][col]);
@@ -195,103 +254,49 @@ public class GameActivity extends AppCompatActivity {
         }//for-loop
     }//disableCells
 
-    // Rests the game; all information from the previous game is removed
-    public void resetGame(){
-        headerText(playerTurn.getTurn());
-        toggleInfoText(1);
+    /**
+     * Resets the game, clearing the previous game state.
+     */
+    protected void resetGame(){
+        roundInfo(this, playerTurn.getTurn());
+        flashAnimator.toggleInfoText(1);
         resetCells();
 
-        if (winningPattern != null){ // If a player won the previous game
-            resetOutline();
-        }//if-statement
+        if (flashAnimator.winningPattern != null){ // If a player won the previous game
+            flashAnimator.resetOutline();
+        } else if (tieGame) {
+            tieGame = false;
+
+            // Show the player square
+            View playerSquare = findViewById(R.id.playerSquare);
+            playerSquare.setVisibility(View.VISIBLE);
+
+            // Show the text for the winner
+            TextView roundView = findViewById(R.id.roundView);
+            roundView.setVisibility(View.VISIBLE);
+
+            // Hide the text indicating that the game ended in a tie
+            TextView tieText = findViewById(R.id.tieText);
+            tieText.setVisibility(View.GONE);
+        }//if-elseif statement
     }//resetGame
 
-    // Resets the interface of all grid cells to the "Empty" colour
-    public void resetCells() {
+    /**
+     * Resets all grid cells background colour back to the "Empty" colour.
+     */
+    private void resetCells() {
         gameGrid.resetGrid();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 View selectCell = findViewById(gridIds[row][col]);
-                selectCell.setBackgroundColor(Color.parseColor(colourMap.get("Empty"))); // Reset to white
+
+                Integer cellColour = Objects.requireNonNullElse(colourMap.get("Empty"), Color.WHITE);
+                selectCell.setBackgroundColor(cellColour);
+
                 Button btn = findViewById(buttonIds[row][col]);
                 btn.setEnabled(true); // Re-enable button
             }//for-loop
         }//for-loop
     }//resetCells
-
-    // Displays a short, 3-second winner animation highlighting the winning cell pattern
-    public void winAnimation() {
-        toggleInfoText(0); // Hide informative text
-
-        // Handles the execution of the animation
-        Handler handler = new Handler(Looper.getMainLooper());
-        int delay = 500; // 0.5 seconds
-        int animationDuration = 3000; // 3 seconds
-        int toggleAmount = animationDuration / delay; // Times toggling outline
-
-        // Create an animation task
-        Runnable flashAnimation = new Runnable() {
-            boolean isDefaultOutline = true;
-            int amount = 0;
-
-            // Repeatedly toggles the cell outlines; creates a flashing effect
-            @Override
-            public void run() {
-                if (amount >= toggleAmount) {
-                    return;
-                }//if statement
-
-                for (int[] cellPositions : winningPattern) {
-
-                    // Grab the position of the cell on the grid
-                    int row = cellPositions[0];
-                    int col = cellPositions[1];
-
-                    // Get the correct grid outline object from the table
-                    View cellView = findViewById(gridOutlineIds[row][col]);
-
-                    if (cellView != null) {
-                        if (isDefaultOutline) {
-                            cellView.setBackgroundResource(R.drawable.rectangle_1);
-                        } else {
-                            cellView.setBackgroundResource(R.drawable.rectangle_2);
-                        }//if-else
-                    }//if statement
-                }//for-each
-
-                isDefaultOutline = !isDefaultOutline; // Toggle outline
-                amount += 1;
-
-                handler.postDelayed(this, delay); // Repeat every 0.5 seconds
-            }//run
-        };
-
-        handler.post(flashAnimation); // Start animation
-    }//winAnimation
-
-    // Resets the outlines from the cells that were part of the winning pattern
-    public void resetOutline() {
-        for (int[] cellPosition : winningPattern) {
-
-            // Grab the position of the cell on the grid
-            int row = cellPosition[0];
-            int col = cellPosition[1];
-
-            // Get the correct grid outline object from the table
-            int cellId = gridOutlineIds[row][col];
-            View cellView = findViewById(cellId);
-
-            if (cellView != null) {
-                cellView.setBackgroundResource(R.drawable.rectangle_1); // Reset to old outline
-            }//if statement
-        }//for-each
-        winningPattern = null;
-    }//setOriginalOutline
-
-    // Shows/Hides the informative text below the round info
-    public void toggleInfoText(int opacity){
-        TextView infoText = findViewById(R.id.infoText);
-        infoText.setAlpha(opacity);
-    }//toggleInfoText
 }//GameActivity
 

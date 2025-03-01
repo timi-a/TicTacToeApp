@@ -7,6 +7,7 @@
     <string name="modeString">&#160;&#160;MODE&#160;&#160;</string>
     <string name="turnString">Player&#160;</string>
     <string name="infoString">Tap a square to place your mark</string>
+    <string name="tieString">No Player Wins!</string>
     <string name="playAgainString">PLAY AGAIN</string>
     <string name="homeString">&#160;&#160;HOME&#160;&#160;</string>
 </resources>

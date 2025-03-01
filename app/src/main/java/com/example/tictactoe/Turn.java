@@ -3,7 +3,6 @@ This class is used to handle player turns, including getting the current turn va
 between turn values 0 and 1.
 
 Author: Timi Aina
-ID: 1777752
 Date: Feburary 14, 2025
  */
 

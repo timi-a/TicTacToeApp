@@ -3,15 +3,12 @@
     <!-- Standard Colors -->
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="darkGrey">#A9A9A9</color>
+    <color name="darkGrey">#808080</color>
     <color name="grey">#D3D3D3</color>
-    <color name="charcoal">#333333</color>
-
-    <!-- Colors.xml (Night) Colours -->
     <color name="eerieBlack">#1F1F1F</color>
 
     <!-- App-Specific Colors -->
-    <color name="defaultGridColour">@color/white</color>
-    <color name="outlineColour">@color/black</color>
-    <color name="textColour">@color/charcoal</color>
+    <color name="defaultGridColour">@color/grey</color>
+    <color name="outlineColour">@color/white</color>
+    <color name="textColour">@color/white</color>
 </resources>

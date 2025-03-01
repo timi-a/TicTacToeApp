@@ -2,8 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.TicTacToe" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Dark Mode Colors -->
-        <item name="colorPrimary">#121212</item>
-        <item name="colorPrimaryVariant">#1F1F1F</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">@color/eerieBlack</item> <!--App's Background Colour -->
     </style>
 </resources>
